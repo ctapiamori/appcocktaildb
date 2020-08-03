@@ -1,0 +1,8 @@
+<h1>Listado de Bebidas</h1>
+<ac-drink-filter (search)="searchDrink($event)"></ac-drink-filter>
+<ac-no-search *ngIf="!drinksList"></ac-no-search>
+<div class="row pt-4" *ngIf="drinksList">
+  <div class="col-md-3" *ngFor="let drink of drinksList">
+    <ac-drink-item [drink]="drink" (view)="viewDrink($event)"></ac-drink-item>
+  </div>
+</div>

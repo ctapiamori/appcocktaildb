@@ -1,0 +1,48 @@
+<div class="jumbotron p-3 p-md-5 rounded bg-ligth">
+  <div class="row">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">{{ drink?.strDrink }}</h1>
+      <p class="lead my-3">{{ getInstructions() }}</p>
+      <div class="lead mb-0">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="langSelected = ''"
+            [ngClass]="{'active': langSelected == '' }">ENG</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="langSelected = 'ES'"
+            [ngClass]="{'active': langSelected == 'ES' }">ESP</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="langSelected = 'DE'"
+            [ngClass]="{'active': langSelected == 'DE' }">DEU</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="langSelected = 'FR'"
+            [ngClass]="{'active': langSelected == 'FR' }">FRA</button>
+        </div>
+      </div>
+      <div class="lead mt-2">
+        <span class="small">Categoría: </span>
+        <a class="badge badge-info" [routerLink]="['/cocktail']" [queryParams]="{valueSearch: drink?.strCategory, type: 'Category'}">
+          {{ drink?.strCategory }}
+        </a>
+      </div>
+      <div class="lead mt-2">
+        <span class="small">Alcohol: </span>
+        <a class="badge badge-info" [routerLink]="['/cocktail']" [queryParams]="{valueSearch: drink?.strAlcoholic, type: 'Alcoholic'}">
+          {{ drink?.strAlcoholic }}
+        </a>
+      </div>
+      <div class="lead mt-2">
+        <span class="small">Vaso: </span>
+        <a class="badge badge-info" [routerLink]="['/cocktail']" [queryParams]="{valueSearch: drink?.strGlass, type: 'Glass'}">
+          {{ drink?.strGlass }}
+        </a>
+      </div>
+      <div class="lead mt-2">
+        <span class="small">Ingredientes: </span>
+        <a *ngFor="let item of getIngredients()" class="badge badge-info mr-2" [routerLink]="['/cocktail']"
+          [queryParams]="{valueSearch: item, type: 'Ingredient'}">
+          {{ item }}
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 offset-md-2">
+      <img *ngIf="drink?.strDrinkThumb" [alt]="drink?.strDrink" class="image-drink" [src]="drink?.strDrinkThumb">
+    </div>
+  </div>
+</div>

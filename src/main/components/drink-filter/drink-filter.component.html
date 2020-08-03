@@ -1,0 +1,43 @@
+<div class="bd-filter">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="selectCategory">Categoría</label>
+      <select class="form-control" id="selectCategory" [(ngModel)]="filter.category"
+        (change)="selectedFilter('Category', filter.category)">
+        <option value="">(seleccionar)</option>
+        <option [value]="item.strCategory" *ngFor="let item of dataSourceCategories">{{item.strCategory}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="selectGlass">Vasos</label>
+      <select class="form-control" id="selectGlass" [(ngModel)]="filter.glass"
+        (change)="selectedFilter('Glass', filter.glass)">
+        <option value="">(seleccionar)</option>
+        <option [value]="item.strGlass" *ngFor="let item of dataSourceGlasess">{{item.strGlass}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="typeaheadIngredient">Ingredientes</label>
+      <input id="typeaheadIngredient" type="text" class="form-control" placeholder="Ingresar ingrediente"
+        [(ngModel)]="filter.ingredient"
+        [ngbTypeahead]="searchIngredients"
+        [editable]='false'
+        (selectItem)="selectedFilter('Ingredient', $event.item)"/>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="selectAlcoholic">Alcohólico</label>
+      <select class="form-control" id="selectAlcoholic" [(ngModel)]="filter.alcoholic"
+        (change)="selectedFilter('Alcoholic', filter.alcoholic)">
+        <option value="">(seleccionar)</option>
+        <option [value]="item.strAlcoholic" *ngFor="let item of dataSourceAlcoholic">{{item.strAlcoholic}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="alert alert-warning" *ngIf="showAlert">
+    Debe seleccionar al menos una opción.
+  </div>
+  <div class="text-right">
+    <small class="pr-4">* Solo puede filtar por una de las opciones.</small>
+    <button type="submit" class="btn btn-secondary" (click)="onClickFilter()">Buscar Bebida</button>
+  </div>
+</div>
